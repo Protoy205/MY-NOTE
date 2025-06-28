@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Note App</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <main class="app-container">
+    <header>
+      <h1>📝 আমার নোট</h1>
+      <button class="toggle-mode" onclick="toggleDarkMode()">🌙</button>
+    </header>
+
+    <section class="search-filter">
+      <input type="text" id="searchInput" placeholder="🔍 নোট খুঁজুন...">
+      <select id="filterSelect" onchange="filterNotes()">
+        <option value="all">সব</option>
+        <option value="pinned">Pinned</option>
+        <option value="unpinned">Unpinned</option>
+      </select>
+    </section>
+
+    <section class="notes-list-section">
+      <ul id="noteList"></ul>
+    </section>
+  </main>
+
+  <button class="fab" onclick="openInputBox()">➕</button>
+
+  <div class="note-input-modal" id="noteModal">
+    <textarea id="noteInput" placeholder="নোট লিখুন..."></textarea>
+    <div class="input-buttons">
+      <button onclick="startVoiceInput()">🎤</button>
+      <button onclick="saveNote()">✅ সংরক্ষণ</button>
+      <button onclick="closeInputBox()">❌</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register("serviceWorker.js");
+    }
+  </script>
+</body>
+</html>
